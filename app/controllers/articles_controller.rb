@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  require 'open-uri'
   def index
     @articles = Article.all
   end
@@ -12,6 +13,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    # url = "https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg"
+    # downloaded_image = URI.open(url)
+    # @article.image.attach(io: downloaded_image, filename: 'image.jpg')
     @article = Article.new(article_params)
 
     if @article.save
@@ -44,7 +48,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body)
-    end
+
+  def article_params
+    params.require(:article).permit(:title, :body, :image)
+  end
 end

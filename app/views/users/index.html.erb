@@ -1,0 +1,16 @@
+<h1>User</h1>
+
+<%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search by name" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<ul>
+  <% @user.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New User", new_user_path %>
